@@ -9,6 +9,6 @@ public interface LabeledEnum {
         return Arrays.stream(enum_.getEnumConstants())
                 .filter(e -> e.getLabel().equals(label))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Неизвестное значение" + label));
+                .orElseThrow(() -> new IllegalArgumentException("Неизвестное значение " + label));
     }
 }

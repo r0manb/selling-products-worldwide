@@ -1,7 +1,7 @@
 package by.r0manb.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Order {
     private Region region;
@@ -9,7 +9,7 @@ public class Order {
     private ItemType itemType;
     private ChannelStatus salesChannel;
     private OrderPriority orderPriority;
-    private Date orderDate;
+    private LocalDate orderDate;
     private int unitsSold;
     private BigDecimal totalProfit;
 
@@ -19,7 +19,7 @@ public class Order {
         ItemType itemType,
         ChannelStatus salesChannel,
         OrderPriority orderPriority,
-        Date orderDate,
+        LocalDate orderDate,
         int unitsSold,
         BigDecimal totalProfit
     ) {
@@ -31,6 +31,20 @@ public class Order {
         this.orderDate = orderDate;
         this.unitsSold = unitsSold;
         this.totalProfit = totalProfit;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "region=" + region +
+                ", country='" + country + '\'' +
+                ", itemType=" + itemType +
+                ", salesChannel=" + salesChannel +
+                ", orderPriority=" + orderPriority +
+                ", orderDate=" + orderDate +
+                ", unitsSold=" + unitsSold +
+                ", totalProfit=" + totalProfit +
+                '}';
     }
 
     public Region getRegion() {
@@ -53,7 +67,7 @@ public class Order {
         return orderPriority;
     }
 
-    public Date getOrderDate() {
+    public LocalDate getOrderDate() {
         return orderDate;
     }
 
