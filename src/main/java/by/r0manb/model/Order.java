@@ -3,22 +3,23 @@ package by.r0manb.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+
 public class Order {
-    private Region region;
+    private String region;
     private String country;
-    private ItemType itemType;
-    private ChannelStatus salesChannel;
-    private OrderPriority orderPriority;
+    private String itemType;
+    private String salesChannel;
+    private String orderPriority;
     private LocalDate orderDate;
     private int unitsSold;
     private BigDecimal totalProfit;
 
     public Order(
-        Region region,
+        String region,
         String country,
-        ItemType itemType,
-        ChannelStatus salesChannel,
-        OrderPriority orderPriority,
+        String itemType,
+        String salesChannel,
+        String orderPriority,
         LocalDate orderDate,
         int unitsSold,
         BigDecimal totalProfit
@@ -37,7 +38,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "region=" + region +
-                ", country='" + country + '\'' +
+                ", country=" + country +
                 ", itemType=" + itemType +
                 ", salesChannel=" + salesChannel +
                 ", orderPriority=" + orderPriority +
@@ -47,7 +48,7 @@ public class Order {
                 '}';
     }
 
-    public Region getRegion() {
+    public String getRegion() {
         return region;
     }
 
@@ -55,15 +56,15 @@ public class Order {
         return country;
     }
 
-    public ItemType getItemType() {
+    public String getItemType() {
         return itemType;
     }
 
-    public ChannelStatus getSalesChannel() {
+    public String getSalesChannel() {
         return salesChannel;
     }
 
-    public OrderPriority getOrderPriority() {
+    public String getOrderPriority() {
         return orderPriority;
     }
 

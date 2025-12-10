@@ -23,11 +23,11 @@ public class CsvParser {
                 csvReader.readNext();
                 while ((line = csvReader.readNext()) != null){
                     orders.add(new Order(
-                            Region.fromLabel(line[0]),
+                            line[0],
                             line[1],
-                            ItemType.fromLabel(line[2]),
-                            ChannelStatus.fromLabel(line[3]),
-                            OrderPriority.valueOf(line[4]),
+                            line[2],
+                            line[3],
+                            line[4],
                             DateParser.parseString(line[5]),
                             Integer.parseInt(line[6]),
                             new BigDecimal(line[7])

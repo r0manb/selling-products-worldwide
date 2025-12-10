@@ -1,3 +1,5 @@
+db.properties
+*.s3db
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
