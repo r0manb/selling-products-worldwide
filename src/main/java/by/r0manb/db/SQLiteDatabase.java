@@ -43,7 +43,7 @@ public class SQLiteDatabase implements Database{
                 );
                 """,
                 """
-                CREATE TABLE IF NOT EXISTS item_type (
+                CREATE TABLE IF NOT EXISTS item_types (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     NAME TEXT NOT NULL UNIQUE
                 );
@@ -64,7 +64,7 @@ public class SQLiteDatabase implements Database{
                 CREATE TABLE IF NOT EXISTS orders (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     country_id INTEGER REFERENCES countries(id),
-                    item_type_id INTEGER REFERENCES item_type_id(id),
+                    item_type_id INTEGER REFERENCES item_types(id),
                     sales_channel_id INTEGER NOT NULL REFERENCES sales_channels(id),
                     priority_id INTEGER NOT NULL REFERENCES order_priorities(id),
                     order_date TEXT NOT NULL,
