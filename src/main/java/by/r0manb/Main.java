@@ -24,6 +24,10 @@ public class Main {
         database.turnOnFK();
 
 //        createTablesAndInsertFromCsv(database);
+
+        Tasks tasks = new Tasks(database.getDatasource());
+        tasks.task2();
+        tasks.task3();
     }
 
     private static void createTablesAndInsertFromCsv(Database database)
@@ -67,5 +71,4 @@ public class Main {
         }
 
     }
-
 }
