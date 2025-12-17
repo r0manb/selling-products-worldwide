@@ -1,6 +1,7 @@
 package by.r0manb;
 
 import javax.sql.DataSource;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,9 +38,9 @@ public class Tasks {
             try (ResultSet rs = st.executeQuery(sql)){
                 if (rs.next()){
                     String name = rs.getString("name");
-                    long totalSum = rs.getLong("total_sum");
+                    BigDecimal totalSum = rs.getBigDecimal("total_sum");
 
-                    System.out.printf("%s: %d\n\n", name, totalSum);
+                    System.out.printf("%s: %.2f\n\n", name, totalSum);
                 }
             }
         }
@@ -70,9 +71,9 @@ public class Tasks {
             try (ResultSet rs = st.executeQuery(sql)){
                 if (rs.next()){
                     String name = rs.getString("name");
-                    long totalSum = rs.getLong("total_sum");
+                    BigDecimal totalSum = rs.getBigDecimal("total_sum");
 
-                    System.out.printf("%s: %d\n\n", name, totalSum);
+                    System.out.printf("%s: %f.2\n\n", name, totalSum);
                 }else {
                     System.out.println("Страны по заданным условиям не найдено!\n");
                 }
