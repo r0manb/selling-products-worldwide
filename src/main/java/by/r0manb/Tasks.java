@@ -1,11 +1,20 @@
 package by.r0manb;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 import javax.sql.DataSource;
+import javax.swing.*;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Tasks {
     private final DataSource dataSource;
@@ -13,6 +22,64 @@ public class Tasks {
     public Tasks(DataSource dataSource){
         this.dataSource = dataSource;
     }
+
+    public void task1() throws SQLException {
+        Map<String, Long> regionToUnits = new HashMap<>();
+        try (
+            Connection conn = dataSource.getConnection();
+            Statement st = conn.createStatement();
+        ){
+            String sql = """
+                    SELECT
+                        r.name,
+                        SUM(o.units_sold) as total_units
+                    FROM regions r
+                    LEFT JOIN countries c
+                        ON r.id = c.region_id
+                    LEFT JOIN orders o
+                        ON c.id = o.country_id
+                    GROUP BY r.name;
+                    """;
+
+            try (ResultSet rs = st.executeQuery(sql)){
+                while (rs.next()){
+                    regionToUnits.put(
+                        rs.getString("name"),
+                        rs.getLong("total_units")
+                    );
+                }
+            }
+        }
+
+        DefaultCategoryDataset categoryDataset = new DefaultCategoryDataset();
+        for (Map.Entry<String, Long> e : regionToUnits.entrySet()){
+            String region = e.getKey();
+            long units = e.getValue();
+
+            categoryDataset.addValue(units, region, region);
+        }
+
+        JFreeChart chart = ChartFactory.createBarChart(
+            "Распределение количества продаж по регионам",
+            "",
+            "",
+            categoryDataset,
+            PlotOrientation.VERTICAL,
+            true,
+            true,
+            false
+        );
+
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Пример столбчатой диаграммы");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.add(new ChartPanel(chart));
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
+    }
+
 
     public void task2() throws SQLException {
         try (

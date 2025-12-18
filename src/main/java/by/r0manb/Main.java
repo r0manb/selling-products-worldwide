@@ -23,9 +23,10 @@ public class Main {
         SQLiteDatabase database = new SQLiteDatabase(DbConfig.getUrl());
         database.turnOnFK();
 
-//        createTablesAndInsertFromCsv(database);
+        createTablesAndInsertFromCsv(database);
 
         Tasks tasks = new Tasks(database.getDatasource());
+        tasks.task1();
         tasks.task2();
         tasks.task3();
     }
