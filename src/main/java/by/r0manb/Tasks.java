@@ -71,7 +71,7 @@ public class Tasks {
         );
 
         SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Пример столбчатой диаграммы");
+            JFrame frame = new JFrame("Задание 1. График распределения продаж по регионам");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.add(new ChartPanel(chart));
             frame.pack();
