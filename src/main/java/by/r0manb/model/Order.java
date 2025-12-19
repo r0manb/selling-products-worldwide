@@ -2,6 +2,7 @@ package by.r0manb.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 public class Order {
@@ -78,5 +79,34 @@ public class Order {
 
     public BigDecimal getTotalProfit() {
         return totalProfit;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return unitsSold == order.unitsSold &&
+                Objects.equals(region, order.region) &&
+                Objects.equals(country, order.country) &&
+                Objects.equals(itemType, order.itemType) &&
+                Objects.equals(salesChannel, order.salesChannel) &&
+                Objects.equals(orderPriority, order.orderPriority) &&
+                Objects.equals(orderDate, order.orderDate) &&
+                Objects.equals(totalProfit, order.totalProfit);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                region,
+                country,
+                itemType,
+                salesChannel,
+                orderPriority,
+                orderDate,
+                unitsSold,
+                totalProfit
+        );
     }
 }
